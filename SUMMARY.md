@@ -11,3 +11,10 @@
 
 * [Overview](vscode/overview.md)
 * [Installation](vscode/installation.md)
+* [MiniServer](vscode/miniserver.md)
+* [BoxLang Home Configuration](vscode/boxlang-home-configuration.md)
+* [Commands](vscode/commands.md)
+
+***
+
+* [Configuration](configuration.md)
