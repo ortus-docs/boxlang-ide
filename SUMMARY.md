@@ -3,11 +3,15 @@
 * [Introduction](README.md)
   * [Contributing Guide](introduction/contributing-guide.md)
   * [Release History](introduction/release-history/README.md)
+    * [1.13.0 (pre-release)](introduction/release-history/1.13.0-pre-release.md)
+    * [1.12.0](introduction/release-history/1.12.0.md)
     * [1.11.0 (pre-release)](introduction/release-history/1.11.0-pre-release.md)
     * [1.10.0](introduction/release-history/1.10.0.md)
     * [1.0.0](introduction/release-history/1.0.0.md)
   * [About This Book](introduction/about-this-book/README.md)
     * [Authors](introduction/about-this-book/authors.md)
+* [Language Server](language-server/README.md)
+  * [Configuration](language-server/configuration.md)
 
 ## VSCode
 
@@ -20,3 +24,5 @@
 ***
 
 * [Configuration](configuration.md)
+
+## Group 1
