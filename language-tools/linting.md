@@ -1,25 +1,8 @@
 ---
-icon: sliders
+icon: prescription
 ---
 
-# Configuration
-
-## BoxLang LSP Configuration Reference
-
-The BoxLang LSP is controlled through three separate configuration systems: **IDE Workspace Settings** (`boxlang.lsp.*`), **Lint Configuration** (`.bxlint.json`), and **Project Mappings** (`boxlang.json`). This document lists all available settings for each system.
-
-### IDE Workspace Settings
-
-**Config file:** `boxlang.lsp.*`
-
-Configured in the IDE (VS Code: settings.json). These control LSP behavior and performance.
-
-| Key                            | Type    | Default | Description                                                                                                                                                                |
-| ------------------------------ | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `enableBackgroundParsing`      | boolean | `false` | When true, triggers a workspace-wide parse and index of all BoxLang files on startup and when this setting changes. Improves symbol discovery at the cost of startup time. |
-| `processDiagnosticsInParallel` | boolean | `true`  | When true, lint diagnostics for open documents are calculated in parallel threads. Disable if you experience threading issues.                                             |
-
-### Lint Configuration
+# Linting
 
 **Config file:** `.bxlint.json`
 

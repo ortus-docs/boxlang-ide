@@ -23,8 +23,7 @@ A version that includes an even number in the minor spot like `3.4.5` will be co
 
 ### OpenVSX
 
-Visit [OpenVSX](https://open-vsx.org/) and search for "BoxLang" or go directly to the official [BoxLang Extension listing](https://open-vsx.org/extension/ortus-solutions/vscode-boxlang).\
-
+Visit [OpenVSX](https://open-vsx.org/) and search for "BoxLang" or go directly to the official [BoxLang Extension listing](https://open-vsx.org/extension/ortus-solutions/vscode-boxlang).<br>
 
 There is a download button on the right-hand side of the page that will allow you to download/install the extension.
 

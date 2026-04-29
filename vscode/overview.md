@@ -37,7 +37,7 @@ A lot of functionality is still provided through the old JavaScript API. It is b
 
 ### Debugger
 
-The [debugger](broken-reference) is implemented in Java using the JDP. It provides complete control over a running BoxLang application.
+The [debugger](/broken/pages/wKeHIvqcYfxCQqnUc9ir) is implemented in Java using the JDP. It provides complete control over a running BoxLang application.
 
 The extension provides quick ways to run your BoxLang programs. Simply right-click within a `.bxs` file or class (`.bx`) that implements a main method and select "BoxLang: Run File".
 

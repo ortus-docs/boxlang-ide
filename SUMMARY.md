@@ -10,8 +10,12 @@
     * [1.0.0](introduction/release-history/1.0.0.md)
   * [About This Book](introduction/about-this-book/README.md)
     * [Authors](introduction/about-this-book/authors.md)
-* [Language Server](language-server/README.md)
-  * [Configuration](language-server/configuration.md)
+
+## Language Tools
+
+* [Overview](language-tools/overview.md)
+* [Linting](language-tools/linting.md)
+* [Formatting](language-tools/formatting.md)
 
 ## VSCode
 
@@ -21,8 +25,9 @@
 * [BoxLang Home Configuration](vscode/boxlang-home-configuration.md)
 * [Commands](vscode/commands.md)
 
+## Jet Brains
+
 ***
 
-* [Configuration](configuration.md)
-
-## Group 1
+* [Overview](overview.md)
+* [Installation](installation.md)
