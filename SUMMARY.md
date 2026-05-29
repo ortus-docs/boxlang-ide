@@ -49,5 +49,5 @@
 
 ***
 
-* [Overview](overview.md)
-* [Installation](installation.md)
+* [Overview](intellij/overview.md)
+* [Installation](intellij/installation.md)
