@@ -48,14 +48,14 @@ Creates a new BoxLang class/component file:
 
 ```javascript
 component {
-    
+
     /**
      * Constructor
      */
     function init() {
         return this;
     }
-    
+
 }
 ```
 
@@ -94,7 +94,7 @@ Creates a new BoxLang markup template file:
 </head>
 <body>
     <h1>Hello BoxLang!</h1>
-    
+
     <bx:output>
         #now()#
     </bx:output>
@@ -154,32 +154,32 @@ Templates support variables that are replaced when creating a file:
 ```javascript
 /**
  * ${NAME} Service
- * 
+ *
  * @author ${USER}
  * @created ${DATE}
  */
 component singleton {
-    
+
     /**
      * Constructor
      */
     function init() {
         return this;
     }
-    
+
     /**
      * Get all ${NAME}s
-     * 
+     *
      * @return array
      */
     function getAll() {
         // TODO: Implement
         return [];
     }
-    
+
     /**
      * Get ${NAME} by ID
-     * 
+     *
      * @id.hint The ${NAME} ID
      * @return struct
      */
@@ -187,10 +187,10 @@ component singleton {
         // TODO: Implement
         return {};
     }
-    
+
     /**
      * Create a new ${NAME}
-     * 
+     *
      * @data.hint The ${NAME} data
      * @return struct
      */
@@ -198,10 +198,10 @@ component singleton {
         // TODO: Implement
         return data;
     }
-    
+
     /**
      * Update an existing ${NAME}
-     * 
+     *
      * @id.hint The ${NAME} ID
      * @data.hint The ${NAME} data
      * @return boolean
@@ -210,10 +210,10 @@ component singleton {
         // TODO: Implement
         return true;
     }
-    
+
     /**
      * Delete a ${NAME}
-     * 
+     *
      * @id.hint The ${NAME} ID
      * @return boolean
      */
@@ -221,7 +221,7 @@ component singleton {
         // TODO: Implement
         return true;
     }
-    
+
 }
 ```
 
@@ -236,9 +236,9 @@ Always add Javadoc-style comments:
 ```javascript
 /**
  * UserService
- * 
+ *
  * Handles user authentication and management
- * 
+ *
  * @author ${USER}
  * @version 1.0.0
  * @created ${DATE}
@@ -252,7 +252,7 @@ Add type hints for better IDE support:
 ```javascript
 /**
  * Get user by ID
- * 
+ *
  * @id.hint The user ID
  * @id.type numeric
  * @return User

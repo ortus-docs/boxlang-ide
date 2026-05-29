@@ -191,7 +191,7 @@ writeOutput("Hello, BoxLang!");
    ```bash
    # macOS (Homebrew)
    brew install openjdk@21
-   
+
    # Ubuntu/Debian
    sudo apt install openjdk-21-jdk
    ```

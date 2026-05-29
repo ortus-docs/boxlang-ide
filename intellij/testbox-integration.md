@@ -184,21 +184,21 @@ TestBox test files follow this structure:
 
 ```javascript
 component extends="testbox.system.BaseSpec" {
-    
+
     function run() {
         describe("UserService", () => {
-            
+
             beforeEach(() => {
                 variables.service = new models.UserService();
             });
-            
+
             describe("create()", () => {
-                
+
                 it("should create a new user", () => {
                     var user = service.create({ name: "John" });
                     expect(user.id).toBeGT(0);
                 });
-                
+
                 it("should validate email format", () => {
                     expect(() => {
                         service.create({ email: "invalid" });
