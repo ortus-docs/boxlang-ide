@@ -45,9 +45,7 @@
 * [Custom Tasks](guides/custom-tasks.md)
 * [Troubleshooting](guides/troubleshooting.md)
 
-## Jet Brains
-
-***
+## IntelliJ
 
 * [Overview](intellij/overview.md)
 * [Installation](intellij/installation.md)
