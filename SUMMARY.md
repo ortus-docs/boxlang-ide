@@ -49,3 +49,10 @@
 
 * [Overview](intellij/overview.md)
 * [Installation](intellij/installation.md)
+* [Settings Reference](intellij/settings-reference.md)
+* [Run Configurations](intellij/run-configurations.md)
+* [Debugging](intellij/debugging.md)
+* [TestBox Integration](intellij/testbox-integration.md)
+* [LSP Features](intellij/lsp-features.md)
+* [File Templates](intellij/file-templates.md)
+* [Runtime Management](intellij/runtime-management.md)
