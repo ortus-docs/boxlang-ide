@@ -2,7 +2,7 @@
 description: >-
   How to run and debug TestBox tests in IntelliJ IDEA — gutter icons, test result
   tree, suite/spec filtering, and automatic TestBox detection.
-icon: test-tube
+icon: vial
 ---
 
 # TestBox Integration
