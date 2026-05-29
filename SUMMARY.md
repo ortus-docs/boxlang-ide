@@ -22,14 +22,28 @@
 * [Overview](language-tools/overview.md)
 * [Linting](language-tools/linting.md)
 * [Formatting](language-tools/formatting.md)
+* [Completions](language-tools/completions.md)
 
 ## VSCode
 
 * [Overview](vscode/overview.md)
 * [Installation](vscode/installation.md)
+* [Settings Reference](vscode/settings-reference.md)
+* [Commands Reference](vscode/commands-reference.md)
+* [Debugging](vscode/debugging.md)
+* [Version Management](vscode/version-management.md)
+* [Project Configuration](vscode/project-configuration.md)
+* [Chat Integration](vscode/chat-integration.md)
+* [Feature Audit Tool](vscode/feature-audit.md)
+* [Keybindings & Context Menus](vscode/keybindings.md)
 * [MiniServer](vscode/miniserver.md)
 * [BoxLang Home Configuration](vscode/boxlang-home-configuration.md)
-* [Commands](vscode/commands.md)
+
+## Guides
+
+* [CFML Compatibility](guides/cfml-compatibility.md)
+* [Custom Tasks](guides/custom-tasks.md)
+* [Troubleshooting](guides/troubleshooting.md)
 
 ## Jet Brains
 
