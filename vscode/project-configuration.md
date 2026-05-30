@@ -39,11 +39,11 @@ This tells the LSP that the logical path `/models` maps to the `models/` directo
 
 ### Top-Level Keys
 
-| Key | Type | Default | Description |
-| --- | --- | --- | --- |
-| `mappings` | `object{}` | `{"/": "${user-dir}"}` | Virtual path prefix to filesystem path mappings. The key is the logical prefix (must start with `/`) and the value is a relative or absolute directory path. |
-| `classPaths` | `string[]` | `[]` | Additional directories to include in the classpath for type resolution. Paths may be absolute or relative to `boxlang.json`. |
-| `modulesDirectory` | `string[]` | `["boxlang_modules"]` | Directories containing BoxLang modules. Defaults to `boxlang_modules/` relative to `boxlang.json`. Paths may be absolute or relative. |
+| Key                | Type       | Default                | Description                                                                                                                                                  |
+| ------------------ | ---------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `mappings`         | `object{}` | `{"/": "${user-dir}"}` | Virtual path prefix to filesystem path mappings. The key is the logical prefix (must start with `/`) and the value is a relative or absolute directory path. |
+| `classPaths`       | `string[]` | `[]`                   | Additional directories to include in the classpath for type resolution. Paths may be absolute or relative to `boxlang.json`.                                 |
+| `modulesDirectory` | `string[]` | `["boxlang_modules"]`  | Directories containing BoxLang modules. Defaults to `boxlang_modules/` relative to `boxlang.json`. Paths may be absolute or relative.                        |
 
 ### Mappings
 
@@ -65,6 +65,10 @@ Mappings are the core of project configuration. They tell the LSP how to resolve
 - Keys must start with `/`
 - Values can be relative (to `boxlang.json`) or absolute
 - The `/` mapping defines the root of your application
+
+{% hint style="info" %}
+`boxlang.json` mappings are used by both navigation features and mapping-dependent diagnostics such as `invalidExtends`.
+{% endhint %}
 
 ### ClassPaths
 
@@ -100,12 +104,12 @@ The default `boxlang_modules/` directory is relative to your `boxlang.json` file
 
 Paths support variable expansion using the `${variable}` syntax:
 
-| Variable | Expands to |
-| --- | --- |
-| `${boxlang-home}` | The active BoxLang Home directory (default: `~/.boxlang`) |
-| `${user-dir}` | The user's home directory |
-| `${env.VAR}` | The value of the environment variable `VAR` |
-| `${env.VAR:default}` | The value of `VAR`, or `default` if not set |
+| Variable             | Expands to                                                |
+| -------------------- | --------------------------------------------------------- |
+| `${boxlang-home}`    | The active BoxLang Home directory (default: `~/.boxlang`) |
+| `${user-dir}`        | The user's home directory                                 |
+| `${env.VAR}`         | The value of the environment variable `VAR`               |
+| `${env.VAR:default}` | The value of `VAR`, or `default` if not set               |
 
 ### Example
 
@@ -150,6 +154,22 @@ The VS Code setting `boxlang.mappings` allows you to override project mappings d
 `boxlang.mappings` takes **precedence** over `boxlang.json` mappings. Use it for personal overrides that shouldn't be committed to the project.
 {% endhint %}
 
+### Mapping Resolution Order
+
+When the language server resolves virtual paths for diagnostics and symbol lookup, it merges mappings from several sources:
+
+1. ColdBox implicit module mappings
+2. `boxlang.json`
+3. `.bxlint.json`
+4. The nearest `Application.bx` or `Application.cfc`
+5. VS Code `boxlang.mappings`
+
+This means project mappings can be refined for analysis in `.bxlint.json`, overridden locally in editor settings, or supplied directly from application-level static `this.mappings` entries.
+
+{% hint style="success" %}
+Saving `boxlang.json`, `Application.bx`, or `Application.cfc` causes the LSP to refresh mapping-dependent diagnostics for open documents without restarting the language server.
+{% endhint %}
+
 ---
 
 ## Complete Example
@@ -178,15 +198,15 @@ A comprehensive `boxlang.json` for a ColdBox application:
 
 ## Relationship to Other Config Files
 
-| File | Purpose |
-| --- | --- |
-| `boxlang.json` | Project structure — mappings, classpaths, modules |
-| `.bxlint.json` | Static analysis rules and file filters |
-| `.bxformat.json` | Code formatting rules |
-| VS Code `settings.json` | Editor-level overrides and IDE preferences |
+| File                    | Purpose                                           |
+| ----------------------- | ------------------------------------------------- |
+| `boxlang.json`          | Project structure — mappings, classpaths, modules |
+| `.bxlint.json`          | Static analysis rules and file filters            |
+| `.bxformat.json`        | Code formatting rules                             |
+| VS Code `settings.json` | Editor-level overrides and IDE preferences        |
 
 {% hint style="tip" %}
-`.bxlint.json` can also define `mappings` used specifically for lint analysis. These are separate from `boxlang.json` mappings and serve different purposes — see [Linting](../language-tools/linting.md) for details.
+`.bxlint.json` can also define `mappings` used specifically for lint analysis, and the nearest `Application.bx` / `Application.cfc` can contribute static `this.mappings` entries for resolution. See [Linting](../language-tools/linting.md) for the analysis-specific behavior and quick fixes.
 {% endhint %}
 
 ---

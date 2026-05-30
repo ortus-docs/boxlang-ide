@@ -24,23 +24,23 @@ The **VS Code** and **JetBrains** plugins both ship the same LSP engine, so the 
 
 ### Top-level keys
 
-| Key | Type | Default | Description |
-| --- | --- | --- | --- |
-| `diagnostics` | `object{}` | `{}` | Per‑rule configuration map. Each key is a rule ID; each value is an object with optional `enabled`, `severity`, and `params` fields. |
-| `include` | `string[]` | `[]` | Workspace‑relative glob patterns. When non‑empty, **only** matching files are analyzed. |
-| `exclude` | `string[]` | `[]` | Workspace‑relative glob patterns. Files matching any exclude pattern are **never** analyzed, even if they match an include pattern. Evaluated after `include`. |
-| `mappings` | `object{}` | `{}` | Virtual‑path‑to‑filesystem‑path map used by the LSP for symbol resolution during analysis. Paths resolve relative to the workspace root. |
-| `formatting` | `object{}` | `{}` | Workspace‑shared formatting configuration. Houses the `experimental.enabled` toggle for the BoxLang formatter. |
+| Key           | Type       | Default | Description                                                                                                                                                    |
+| ------------- | ---------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `diagnostics` | `object{}` | `{}`    | Per‑rule configuration map. Each key is a rule ID; each value is an object with optional `enabled`, `severity`, and `params` fields.                           |
+| `include`     | `string[]` | `[]`    | Workspace‑relative glob patterns. When non‑empty, **only** matching files are analyzed.                                                                        |
+| `exclude`     | `string[]` | `[]`    | Workspace‑relative glob patterns. Files matching any exclude pattern are **never** analyzed, even if they match an include pattern. Evaluated after `include`. |
+| `mappings`    | `object{}` | `{}`    | Virtual‑path‑to‑filesystem‑path map used by the LSP for symbol resolution during analysis. Paths resolve relative to the workspace root.                       |
+| `formatting`  | `object{}` | `{}`    | Workspace‑shared formatting configuration. Houses the `experimental.enabled` toggle for the BoxLang formatter.                                                 |
 
 ### Glob syntax
 
 Glob patterns support three wildcards:
 
-| Token | Meaning |
-| --- | --- |
-| `*` | Matches any characters except `/` within a single path segment. |
-| `**` | Matches any characters, including `/`, across multiple path segments. |
-| `?` | Matches any single character except `/`. |
+| Token | Meaning                                                               |
+| ----- | --------------------------------------------------------------------- |
+| `*`   | Matches any characters except `/` within a single path segment.       |
+| `**`  | Matches any characters, including `/`, across multiple path segments. |
+| `?`   | Matches any single character except `/`.                              |
 
 Always use forward slashes (`/`) regardless of operating system.
 
@@ -129,22 +129,22 @@ Run the **`boxlang.createBxlintConfig`** command in your editor to generate a fr
 
 The LSP ships with **14** diagnostic rules, each identified by a stable rule ID. The default severity reflects how severe the issue typically is.
 
-| Rule ID | Default Severity | Description |
-| --- | --- | --- |
-| `duplicateMethod` | error | Flags multiple method definitions with the same name within the same class. |
-| `duplicateProperty` | error | Flags multiple property definitions with the same name within the same class. |
-| `invalidExtends` | error | Flags `extends` references to classes or interfaces that cannot be resolved. |
-| `invalidImplements` | error | Flags `implements` references to interfaces that cannot be resolved. |
-| `emptyCatchBlock` | warning | Flags `catch` blocks that contain no executable code, which silently swallows exceptions. |
-| `missingQueryParamCfsqltype` | warning | Flags `<cfqueryparam>` tags that are missing a `cfsqltype` attribute. |
-| `missingReturnStatement` | warning | Flags functions with a non‑void return type that lack a `return` statement in all code paths. |
-| `shadowedVariable` | warning | Flags local variables that share the same name as a function parameter, shadowing it. |
-| `unescapedQueryParam` | warning | Flags query string interpolations (`#var#`) that should be wrapped in `<cfqueryparam>`. |
-| `unreachableCode` | warning | Flags code appearing after control‑flow statements like `return`, `throw`, or `break` that can never be executed. |
-| `unscopedVariable` | warning | Flags variables used without an explicit scope prefix (e.g., `foo` instead of `variables.foo`). |
-| `unusedImport` | warning | Flags `import` statements for classes or packages that are never referenced in the file. |
-| `unusedPrivateMethod` | warning | Flags `private` methods that are never called within the class, indicating dead code. |
-| `unusedVariable` | hint | Flags local variables that are declared but never used in the code. |
+| Rule ID                      | Default Severity | Description                                                                                                       |
+| ---------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `duplicateMethod`            | error            | Flags multiple method definitions with the same name within the same class.                                       |
+| `duplicateProperty`          | error            | Flags multiple property definitions with the same name within the same class.                                     |
+| `invalidExtends`             | error            | Flags `extends` references to classes or interfaces that cannot be resolved.                                      |
+| `invalidImplements`          | error            | Flags `implements` references to interfaces that cannot be resolved.                                              |
+| `emptyCatchBlock`            | warning          | Flags `catch` blocks that contain no executable code, which silently swallows exceptions.                         |
+| `missingQueryParamCfsqltype` | warning          | Flags `<cfqueryparam>` tags that are missing a `cfsqltype` attribute.                                             |
+| `missingReturnStatement`     | warning          | Flags functions with a non‑void return type that lack a `return` statement in all code paths.                     |
+| `shadowedVariable`           | warning          | Flags local variables that share the same name as a function parameter, shadowing it.                             |
+| `unescapedQueryParam`        | warning          | Flags query string interpolations (`#var#`) that should be wrapped in `<cfqueryparam>`.                           |
+| `unreachableCode`            | warning          | Flags code appearing after control‑flow statements like `return`, `throw`, or `break` that can never be executed. |
+| `unscopedVariable`           | warning          | Flags variables used without an explicit scope prefix (e.g., `foo` instead of `variables.foo`).                   |
+| `unusedImport`               | warning          | Flags `import` statements for classes or packages that are never referenced in the file.                          |
+| `unusedPrivateMethod`        | warning          | Flags `private` methods that are never called within the class, indicating dead code.                             |
+| `unusedVariable`             | hint             | Flags local variables that are declared but never used in the code.                                               |
 
 ---
 
@@ -330,11 +330,31 @@ The `mappings` key in `.bxlint.json` tells the language server where to find sou
 Mappings in `.bxlint.json` serve the same purpose as the `mappings` key in `boxlang.json`, but they are scoped to the LSP analysis context and do not affect runtime behavior.
 {% endhint %}
 
+When the LSP resolves classes for diagnostics such as `invalidExtends`, it merges mapping sources in this order:
+
+1. ColdBox implicit module mappings
+2. `boxlang.json`
+3. `.bxlint.json`
+4. The nearest `Application.bx` or `Application.cfc`
+5. VS Code `boxlang.mappings` overrides
+
+Saving `.bxlint.json`, `boxlang.json`, `Application.bx`, or `Application.cfc` causes the language server to recompute mapping-dependent diagnostics for open documents. You do not need to restart the editor to clear a now-valid `extends` reference.
+
 ---
 
 ## Quick Fixes (Code Actions)
 
 For certain rules, the LSP offers **quick fixes** — automated refactorings you can apply with a single click.
+
+### Invalid extends (`invalidExtends`)
+
+When an `extends` reference cannot be resolved but the workspace contains a likely filesystem match, the LSP downgrades the diagnostic to a warning and offers mapping quick fixes.
+
+- **Add mapping to `Application.bx` / `Application.cfc`** — Inserts a static `this.mappings[ "key" ] = "path"` entry into the nearest application config file.
+- **Add mapping to `boxlang.json`** — Creates or updates the project `mappings` block.
+- **Add mapping to `.bxlint.json`** — Creates or updates lint-only mappings used during analysis.
+
+Suggestions are ordered by the longest suffix match. For example, `models.machines.Vehicle` prefers a class found at `src/models/machines/Vehicle.bx` over a shorter partial match elsewhere in the workspace.
 
 ### Unescaped query params (`unescapedQueryParam`)
 
@@ -379,11 +399,11 @@ Formatting requires **BoxLang 1.13.0+** and **bx‑lsp 1.10.0+**. See the [Forma
 
 In addition to `.bxlint.json`, the LSP also reads `boxlang.json` at the workspace root to resolve classpaths and virtual path mappings for type resolution during analysis.
 
-| Key | Type | Default | Description |
-| --- | --- | --- | --- |
-| `mappings` | `object{}` | `{}` | Virtual path prefix to filesystem path map. Supports `${user-dir}`, `${boxlang-home}`, and `${env.VAR:default}` variable expansion. |
-| `classPaths` | `string[]` | `[]` | Directories to include in the classpath for type resolution. Paths may be absolute or relative to the `boxlang.json` file. |
-| `modulesDirectory` | `string[]` | `["boxlang_modules"]` | Directories containing BoxLang modules. Defaults to `boxlang_modules/` relative to `boxlang.json`. |
+| Key                | Type       | Default               | Description                                                                                                                         |
+| ------------------ | ---------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `mappings`         | `object{}` | `{}`                  | Virtual path prefix to filesystem path map. Supports `${user-dir}`, `${boxlang-home}`, and `${env.VAR:default}` variable expansion. |
+| `classPaths`       | `string[]` | `[]`                  | Directories to include in the classpath for type resolution. Paths may be absolute or relative to the `boxlang.json` file.          |
+| `modulesDirectory` | `string[]` | `["boxlang_modules"]` | Directories containing BoxLang modules. Defaults to `boxlang_modules/` relative to `boxlang.json`.                                  |
 
 {% hint style="warning" %}
 `boxlang.json` supports `//` line comments for inline documentation.
